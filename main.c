@@ -9,6 +9,7 @@
 
 enum value_type {
         VALUE_NULL,
+        VALUE_SYMBOL,
         VALUE_STRING,
         VALUE_NUMBER,
         VALUE_LIST
@@ -19,7 +20,7 @@ struct value {
         enum value_type type;
         value* next; /* The next value in a list */
         
-        /* String Type */
+        /* String/Symbol Type */
         const wchar_t* string;
         
         /* Number Type */
@@ -60,7 +61,7 @@ void clone_val(value* dest, value* src)
 /* Parsing functions */
 int parse_white(const wchar_t** code);
 int parse_string(value* val, const wchar_t** code);
-int parse_ident(value* val, const wchar_t** code);
+int parse_symbol(value* val, const wchar_t** code);
 int parse_list(value* val, const wchar_t** code);
 int parse_number(value* val, const wchar_t** code);
 int parse_value(value* val, const wchar_t** code);
@@ -109,7 +110,7 @@ int parse_string(value* val, const wchar_t** code)
         return 1;
 }
 
-int parse_ident(value* val, const wchar_t** code)
+int parse_symbol(value* val, const wchar_t** code)
 {
         /* Must start with alpha character */
         if(!iswalpha(**code)) { return 0; }
@@ -134,7 +135,7 @@ int parse_ident(value* val, const wchar_t** code)
         }
         
         /* Setup value */
-        val->type = VALUE_STRING;
+        val->type = VALUE_SYMBOL;
         val->string = strval;
         
         *code = c;
@@ -162,7 +163,7 @@ int parse_list(value* val, const wchar_t** code)
                 tval->next = alloc_val();
                 tval = tval->next;
                 
-                int result = parse_ident(tval, &c);
+                int result = parse_symbol(tval, &c);
                 if(!result) { return 0; }
                 
                 parse_white(&c);
