@@ -2,8 +2,8 @@
 BuildItems=@Variant(\x00\x00\x00\t\x00\x00\x00\x00\x01\x00\x00\x00\x0b\x00\x00\x00\x00\x01\x00\x00\x00\x0c\x00s\x00q\x00u\x00a\x00r\x00e)
 
 [CMake]
-Build Directory Count=1
-Current Build Directory Index=0
+Build Directory Count=2
+Current Build Directory Index=1
 ProjectRootRelative=./
 
 [CMake][CMake Build Directory 0]
@@ -13,6 +13,14 @@ CMake Binary=file:///usr/bin/cmake
 Environment Profile=
 Extra Arguments=
 Install Directory=
+
+[CMake][CMake Build Directory 1]
+Build Directory Path=file:///home/rikki/Projects-build/Square
+Build Type=Debug
+CMake Binary=file:///usr/bin/cmake
+Environment Profile=
+Extra Arguments=
+Install Directory=file:///usr/local
 
 [CustomDefinesAndIncludes][ProjectPath0]
 Defines=\x00\x00\x00\x00
