@@ -203,6 +203,7 @@ void fprintvalue(FILE* file, value* val) {
         }
 }
 
+#include "text.h"
 
 int main(int argc, char** argv)
 {
@@ -243,6 +244,10 @@ int main(int argc, char** argv)
         } else {
                 fprintvalue(stdout, root_val);
         }
+        
+        /* text test */
+        text* my_text = text_createz("something");
+        printf("Length: %d \n", text_strlen(my_text));
         
         return 0;
 }
